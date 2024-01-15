@@ -12,7 +12,8 @@ const schema = require('./schema/schema');
 const app = express();
 
 // Replace with your Mongo Atlas URI
-const MONGO_URI = 'mongodb+srv://danielcarbaugh142:d006NVEuJyPR8hRl@auth.vzcbvu2.mongodb.net/?retryWrites=true&w=majority';
+const MONGO_URI =
+  'mongodb+srv://danielcarbaugh142:d006NVEuJyPR8hRl@auth.vzcbvu2.mongodb.net/auth?retryWrites=true&w=majority';
 if (!MONGO_URI) {
   throw new Error('You must provide a Mongo Atlas URI');
 }
@@ -43,8 +44,8 @@ app.use(
     secret: 'aaabbbccc',
     store: new MongoStore({
       url: MONGO_URI,
-      autoReconnect: true
-    })
+      autoReconnect: true,
+    }),
   })
 );
 
@@ -60,7 +61,7 @@ app.use(
   '/graphql',
   expressGraphQL({
     schema,
-    graphiql: true
+    graphiql: true,
   })
 );
 
